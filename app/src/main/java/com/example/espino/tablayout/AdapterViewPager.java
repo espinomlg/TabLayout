@@ -49,6 +49,37 @@ public class AdapterViewPager extends FragmentStatePagerAdapter{
 
         return fragment;
     }
+/*
+    @Override
+    public CharSequence getPageTitle(int position) {
+        String title = null;
+
+        switch (position){
+            case 0:
+                title = "Pcs";
+                break;
+            case 1:
+                title = "Pantallas";
+                break;
+            case 2:
+                title = "Micros";
+                break;
+            case 3:
+                title = "Teclados";
+                break;
+            case 4:
+                title = "Ratones";
+                break;
+        }
+
+        return title;
+    }
+*/
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return super.getPageTitle(position);
+    }
 
     @Override
     public int getCount() {

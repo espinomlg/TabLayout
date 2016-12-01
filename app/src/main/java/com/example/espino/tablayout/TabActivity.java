@@ -27,10 +27,17 @@ public class TabActivity extends AppCompatActivity {
         //tabLayout.addTab(tabLayout.newTab().setText("Tab1"));
 
         for(String title : getResources().getStringArray(R.array.tabs)){
-            tabLayout.addTab(tabLayout.newTab().setText(title));
+            tabLayout.addTab(tabLayout.newTab().setText(title).setIcon(R.drawable.alert));
         }
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
 
         viewPager = (ViewPager) findViewById(R.id.viewPager);
+        adapter = new AdapterViewPager(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(adapter);
+        viewPager.setPageTransformer(false, new CubeInTransformer());
+        //tabLayout.setupWithViewPager(viewPager);
+
+
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -39,7 +46,8 @@ public class TabActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-
+                //tabLayout.getTabAt(position).select();
+                tabLayout.setScrollPosition(position,0f,true);
             }
 
             @Override
@@ -47,7 +55,7 @@ public class TabActivity extends AppCompatActivity {
 
             }
         });
-        adapter = new AdapterViewPager(getSupportFragmentManager(), tabLayout.getTabCount());
+
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
 
